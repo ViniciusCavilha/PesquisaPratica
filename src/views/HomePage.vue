@@ -151,13 +151,17 @@
                 /></label>
                 <label
                   >Data de nascimento<input
-                    v-model="profile.birth_date"
-                    type="date"
+                    v-model="birthDateInput"
+                    type="text"
+                    inputmode="numeric"
+                    placeholder="DD/MM/AAAA"
+                    maxlength="10"
+                    pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"
                     autocomplete="bday"
                     required
-                    min="1900-01-01"
+                    @input="formatBirthDate"
                     :disabled="busy"
-                /></label>
+                /><small>Digite dia, mês e ano. Exemplo: 15/08/2008.</small></label>
                 <label
                   >Nickname<input
                     v-model.trim="profile.nickname"
@@ -210,6 +214,17 @@ const confirmation = ref("");
 const photo = ref<File | null>(null);
 const avatarUrl = ref("");
 const fileInputKey = ref(0);
+const birthDateInput = ref("");
+
+function formatBirthDate(event: Event) {
+  const input = event.target as HTMLInputElement;
+  const digits = input.value.replace(/\D/g, "").slice(0, 8);
+  let formatted = digits.slice(0, 2);
+  if (digits.length > 2) formatted += "/" + digits.slice(2, 4);
+  if (digits.length > 4) formatted += "/" + digits.slice(4, 8);
+  birthDateInput.value = formatted;
+  input.value = formatted;
+}
 const profile = reactive({
   name: "",
   birth_date: "",
@@ -267,6 +282,8 @@ async function loadProfile(userId: string) {
       : { name: "", birth_date: "", nickname: "", avatar_path: "" },
   );
   avatarUrl.value = "";
+  // O banco usa AAAA-MM-DD; o formulário mostra DD/MM/AAAA.
+  birthDateInput.value = profile.birth_date.split("-").reverse().join("/");
   if (data?.avatar_path) {
     const result = await supabase.storage
       .from("avatars")
@@ -293,6 +310,7 @@ onMounted(async () => {
       });
       avatarUrl.value = "";
       photo.value = null;
+      birthDateInput.value = "";
       recovery.value = false;
     }
     // Evita chamadas ao cliente enquanto o lock de Auth está no callback.
@@ -387,6 +405,7 @@ async function saveProfile() {
   error.value = "";
   message.value = "";
   try {
+    profile.birth_date = birthDateInput.value.split("/").reverse().join("-");
     const invalid = validateProfile(
       profile.name,
       profile.birth_date,
