@@ -1,2 +1,141 @@
-/* For information on how to create your own theme, please refer to:
-http://ionicframework.com/docs/theming/ */
+:root {
+  --ion-color-primary: #156b57;
+  --ion-color-primary-rgb: 21, 107, 87;
+  --ion-color-primary-contrast: #fff;
+  --ion-color-primary-shade: #125e4d;
+  --ion-color-primary-tint: #2c7a68;
+  --ion-background-color: #f4f6f3;
+  --ion-text-color: #17382f;
+  font-family: "Segoe UI", sans-serif;
+}
+ion-toolbar {
+  --background: #fff;
+  --border-color: #e0e7e2;
+}
+.layout {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+.intro h1 {
+  font-size: 26px;
+}
+.intro p {
+  color: #52685e;
+  line-height: 1.5;
+}
+.panel {
+  background: #fff;
+  padding: 24px;
+  border: 1px solid #dfe8e1;
+  border-radius: 8px;
+}
+h2 {
+  font-size: 27px;
+  letter-spacing: -0.7px;
+  margin: 14px 0;
+}
+.muted,
+small {
+  color: #63756b;
+  line-height: 1.6;
+}
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+input {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 13px;
+  border: 1px solid #cbd8d0;
+  border-radius: 10px;
+  background: #fcfdfb;
+  color: #17382f;
+  box-sizing: border-box;
+}
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #80bda8;
+  outline-offset: 2px;
+}
+small {
+  font-size: 12px;
+  font-weight: 400;
+  display: block;
+  margin-top: 6px;
+}
+ion-button {
+  --border-radius: 10px;
+  min-height: 46px;
+  text-transform: none;
+  font-weight: 650;
+  margin: 20px 0 0;
+}
+button {
+  border: 0;
+  background: transparent;
+  color: #156b57;
+  cursor: pointer;
+  padding: 10px 0;
+  font-size: 13px;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.links,
+nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+nav {
+  margin-bottom: 28px;
+  border-bottom: 1px solid #e0e7e2;
+}
+nav [aria-current] {
+  font-weight: 750;
+  border-bottom: 2px solid #156b57;
+}
+.notice,
+.error {
+  padding: 12px 15px;
+  border-radius: 10px;
+  line-height: 1.5;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.notice {
+  background: #eaf5ee;
+  color: #23533e;
+}
+.error {
+  background: #fff0ed;
+  color: #a32b1e;
+}
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #dfeee6;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin: 12px 0 26px;
+  font-size: 36px;
+  font-weight: 650;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.account {
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
