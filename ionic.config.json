@@ -1,0 +1,7 @@
+{
+  "name": "PesquisaPratica",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
